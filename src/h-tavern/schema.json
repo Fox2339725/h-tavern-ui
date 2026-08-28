@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "default": {},
+  "type": "object",
+  "properties": {
+    "经营": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "资金": {
+          "default": 0,
+          "type": "number"
+        },
+        "欠款": {
+          "default": 10000000,
+          "type": "number"
+        },
+        "剩余天数": {
+          "default": 30,
+          "type": "number"
+        },
+        "评价": {
+          "default": 0,
+          "type": "number"
+        },
+        "色情评价": {
+          "default": 0,
+          "type": "number"
+        }
+      }
+    },
+    "佑树": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "恋人": {
+          "default": "无",
+          "type": "string",
+          "enum": [
+            "无",
+            "葵",
+            "美月"
+          ]
+        },
+        "绿帽度": {
+          "default": 0,
+          "type": "number"
+        },
+        "知情度": {
+          "default": "不知情",
+          "type": "string",
+          "enum": [
+            "不知情",
+            "怀疑",
+            "知情"
+          ]
+        }
+      }
+    },
+    "葵": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "好感度": {
+          "default": 60,
+          "type": "number"
+        },
+        "性欲": {
+          "default": 0,
+          "type": "number"
+        },
+        "醉酒度": {
+          "default": 0,
+          "type": "number"
+        },
+        "状态": {
+          "default": "处女",
+          "type": "string",
+          "enum": [
+            "处女",
+            "有经验",
+            "色情",
+            "淫乱"
+          ]
+        },
+        "怀孕对象": {
+          "default": "无",
+          "type": "string",
+          "enum": [
+            "无",
+            "佑树",
+            "罗伊",
+            "客人",
+            "雷纳德"
+          ]
+        }
+      }
+    },
+    "美月": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "好感度": {
+          "default": 60,
+          "type": "number"
+        },
+        "性欲": {
+          "default": 0,
+          "type": "number"
+        },
+        "醉酒度": {
+          "default": 0,
+          "type": "number"
+        },
+        "状态": {
+          "default": "处女",
+          "type": "string",
+          "enum": [
+            "处女",
+            "有经验",
+            "色情",
+            "淫乱"
+          ]
+        },
+        "怀孕对象": {
+          "default": "无",
+          "type": "string",
+          "enum": [
+            "无",
+            "佑树",
+            "罗伊",
+            "客人",
+            "雷纳德"
+          ]
+        }
+      }
+    },
+    "罗伊": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "好感度": {
+          "default": 0,
+          "type": "number"
+        },
+        "目标": {
+          "default": "无",
+          "type": "string",
+          "enum": [
+            "葵",
+            "美月",
+            "无"
+          ]
+        }
+      }
+    },
+    "客人": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "好感度": {
+          "default": 0,
+          "type": "number"
+        },
+        "目标": {
+          "default": "无",
+          "type": "string",
+          "enum": [
+            "葵",
+            "美月",
+            "无"
+          ]
+        }
+      }
+    },
+    "托米": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "好感度": {
+          "default": 0,
+          "type": "number"
+        },
+        "目标": {
+          "default": "无",
+          "type": "string",
+          "enum": [
+            "葵",
+            "美月",
+            "无"
+          ]
+        }
+      }
+    },
+    "雷纳德": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "好感度": {
+          "default": 0,
+          "type": "number"
+        },
+        "目标": {
+          "default": "无",
+          "type": "string",
+          "enum": [
+            "葵",
+            "美月",
+            "无"
+          ]
+        }
+      }
+    },
+    "当前场景": {
+      "default": "酒馆",
+      "type": "string"
+    },
+    "当前时间": {
+      "default": "第1天 黄昏",
+      "type": "string"
+    }
+  }
+}

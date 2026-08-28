@@ -1,0 +1,91 @@
+:root {
+  /* 功能语义色 */
+  --c-bg: #1e1a16;        /* 背景（酒馆木质暗色） */
+  --c-surface: #2a241d;   /* 面板底色 */
+  --c-surface-hover: #332b21;
+  --c-border: #4a3f2d;    /* 边框 */
+  --c-primary: #e0b84f;   /* 主色（金色烛光） */
+  --c-text: #f0e4c8;      /* 主文字（奶油色） */
+  --c-muted: #a8916a;     /* 次要文字 */
+  --c-heart: #e06a7f;     /* 好感度（粉红） */
+  --c-desire: #e0845a;    /* 性欲（橙） */
+  --c-drunk: #5a9bd0;     /* 醉酒（蓝） */
+  --c-cuck: #c05a4a;      /* 绿帽/危险（红棕） */
+  --c-ok: #7aa86a;        /* 正常/成功（绿） */
+
+  --radius: 8px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: var(--c-text);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+#app {
+  width: 100%;
+}
+
+/* 进度条 */
+.meter {
+  position: relative;
+  height: 14px;
+  background: #14100c;
+  border: 1px solid var(--c-border);
+  border-radius: 7px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.meter > .fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.4s ease;
+}
+
+.meter > .meter-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* 按钮 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 4px 8px;
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  background: var(--c-surface);
+  color: var(--c-text);
+  cursor: pointer;
+  font-size: 12px;
+  user-select: none;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:hover {
+  background: var(--c-surface-hover);
+  border-color: var(--c-primary);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn.primary {
+  border-color: var(--c-primary);
+  color: var(--c-primary);
+  font-weight: 600;
+}
