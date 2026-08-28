@@ -36,13 +36,18 @@
 
     <!-- 里菜单 -->
     <div class="cc-section">
-      <button class="btn primary menu-btn" :disabled="loadingMenu" @click="showMenu">
-        📜 {{ loadingMenu ? '正在生成…' : '里菜单' }}
+      <button class="btn primary menu-btn" @click="showMenuPanel = !showMenuPanel">
+        📜 里菜单 {{ showMenuPanel ? '▲' : '▼' }}
       </button>
-      <details v-if="menuText" class="menu-panel">
-        <summary>展开菜单结果</summary>
-        <div class="menu-content" v-html="menuText"></div>
-      </details>
+      <div v-if="showMenuPanel" class="menu-panel">
+        <div v-for="cat in menuCategories" :key="cat.name" class="menu-cat">
+          <div class="menu-cat-name">{{ cat.name }}</div>
+          <div v-for="item in cat.items" :key="item[0]" class="menu-item">
+            <span class="menu-item-name">{{ item[0] }}</span>
+            <span class="menu-item-price">{{ item[1] }}</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- 佑树 + NTR -->
@@ -75,8 +80,18 @@ import { useDataStore } from './store';
 
 const store = useDataStore();
 
-const menuText = ref('');
-const loadingMenu = ref(false);
+const showMenuPanel = ref(false);
+const menuCategories = [
+  { name: '一、接待类', items: [['陪酒聊天', '5 银'], ['爸爸活（隔衣抚摸）', '10 银'], ['膝枕陪睡', '20 银'], ['膝枕挖耳', '15 银']] },
+  { name: '二、露出类', items: [['撩裙露内裤', '15 银'], ['脱衣全裸展示', '30 银'], ['特殊衣装（围裙/泳装）', '40 银']] },
+  { name: '三、舞蹈表演类', items: [['脱衣舞', '1 金'], ['钢管舞', '2 金'], ['艳舞/贴身热舞', '2 金'], ['兔女郎/猫娘舞', '1金50银']] },
+  { name: '四、触摸类', items: [['揉胸', '50 银'], ['素股/腿交', '60 银'], ['舌吻/湿吻', '80 银'], ['全身爱抚', '1 金']] },
+  { name: '五、自慰类', items: [['自慰表演', '3 金'], ['潮吹/爱液侍酒', '4 金'], ['情趣道具自慰', '5 金']] },
+  { name: '六、口交类', items: [['舔弄清洁', '5 金'], ['深喉', '6 金'], ['口内射精/吞精', '7 金'], ['颜射', '6 金']] },
+  { name: '七、后庭类', items: [['手指开发', '6 金'], ['肛交/菊穴射精', '8 金'], ['前后双穴齐插', '12 金']] },
+  { name: '八、本番类', items: [['戴套性交', '12 金'], ['无套中出', '15 金'], ['开发处女', '20 金'], ['骑乘位/女上位', '15 金']] },
+  { name: '九、特殊玩法', items: [['乱交/3P', '40 金'], ['包场陪睡整晚', '50 金'], ['灌酒侵犯', '酒水另计'], ['贵族猜拳', '输了脱衣']] },
+];
 
 const ntrMen = computed(() => [
   { key: '罗伊', label: '🔪 罗伊', data: store.data.罗伊 },
@@ -102,23 +117,6 @@ function switchTime(period: '白天' | '夜晚') {
   } else {
     store.data.当前时间 = `第${day + 1}天 白天`;
     store.data.经营.剩余天数 = _.clamp((store.data.经营.剩余天数 ?? 0) - 1, 0, 999);
-  }
-}
-
-async function showMenu() {
-  if (loadingMenu.value) return;
-  loadingMenu.value = true;
-  try {
-    const result = await generate({
-      user_input: '请完整列出里菜单的全部分类、项目和价格',
-      should_silence: true,
-    });
-    menuText.value = typeof result === 'string' ? result : '（已请求，请查看聊天记录）';
-  } catch (e) {
-    toastr.error('请求里菜单失败');
-    menuText.value = '';
-  } finally {
-    loadingMenu.value = false;
   }
 }
 </script>
@@ -213,20 +211,41 @@ async function showMenu() {
   background: var(--c-surface);
   border: 1px solid var(--c-border);
   border-radius: var(--radius);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.menu-panel summary {
-  cursor: pointer;
-  padding: 6px 10px;
+.menu-cat-name {
+  font-weight: 700;
+  color: var(--c-primary);
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 4px;
+  font-size: 12px;
+  border-bottom: 1px dashed var(--c-border);
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item-name {
+  color: var(--c-text);
+}
+
+.menu-item-price {
   color: var(--c-primary);
   font-weight: 600;
-}
-
-.menu-content {
-  padding: 8px 12px;
-  font-size: 12px;
-  white-space: pre-wrap;
-  border-top: 1px solid var(--c-border);
+  margin-left: 8px;
+  white-space: nowrap;
 }
 
 .stat-row {
